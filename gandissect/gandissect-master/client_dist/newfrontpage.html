@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGanArt</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="newfrontpage.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbarContent">
+            <span class="navbarTitle"> <img src="./images/ganart.png" style="height: 2em; width: auto; margin-top: -5px;"></span>
+
+            <button class="layerBtn" onclick="goToLayer10()">Layer 10</button>
+            <script>
+                function goToLayer10() {
+                    //maybe make it not dependent on the specific localhost-link
+                    window.location.href = "http://localhost:5001/client/ganpaint.html?project=churchoutdoor&layer=layer10&expert=true";
+                } 
+            </script>
+            
+            <button class="layerBtn" onclick="goToLayer7()">Layer 7</button>
+            <script>
+                function goToLayer7() {
+                    //maybe make it not dependent on the specific localhost-link
+                    window.location.href = "http://localhost:5001/client/ganpaint.html?project=churchoutdoor&layer=layer7&expert=true";
+                } 
+            </script>
+            
+            <button class="layerBtn" onclick="goToLayer4()">Layer 4</button>
+            <script>
+                function goToLayer4() {
+                    //maybe make it not dependent on the specific localhost-link
+                    window.location.href = "http://localhost:5001/client/ganpaint.html?project=churchoutdoor&layer=layer4&expert=true";
+                } 
+            </script>
+        </div>
+
+    </div>
+
+
+    <div class="main_frame">
+
+            <div class="container">
+
+                <div class="floating_content" style="text-align: left;">
+                    <h2>Welcome to <i>XGanArt</i>!</h2>
+                    <p> 
+                        Our project, born out of the collaborative efforts of bachelor students at ITU University, aims to unlock the mysteries
+                        of neural networks, specifically focusing on generative models. Leveraging the groundwork laid by the open-source
+                        project 
+                        <a href="https://gandissect.csail.mit.edu" target="_blank"> GAN Dissection </a>
+                        from 
+                        <a href="https://mitibmwatsonailab.mit.edu" target="_blank"><b>MIT-IBM</b> Watson AI
+                            Lab</a>
+                        we proudly introduce our eXplainable version of GANPaint - <i>XGanArt</i>.
+                    </p>
+                    <p>
+                        <b>
+                        Below, you’ll see a neural network with three specific layers highlighted.
+                        <br>
+                        Neural networks are composed of layers of interconnected neurons. Data from the input is used by the neurons at the
+                        first layer to produce a calculated output. If this output is above a set threshold, the neuron is ‘activated’ and
+                        forwards the calculated output to the next layer of neurons. This data is then used by the next layer and so on.
+                        The concepts (objects such as trees or parts like the dome of a building) that the network has learned to recognize at
+                        the chosen layer are shown in the bar graph.
+                        <br>
+                        Click on one of the higlighted layers to see the details for that layer.
+                        </b>
+                        <br> <br>
+                        <i>When you are done, you can click the layers in upper right corner to start drawing</i>
+                    </p>
+                    </div>
+                <!-- Move this component into own file?  -->
+                <div class="graph" id="graph" data-value="layer7" style="position: relative;">
+                    <div class="flex-container" style="text-align: left;">
+                        <div class="flex-child imgInOut" style="align-items: center; justify-content: center;">
+                            <img src="./images/imageinput.png" alt="Input">
+                            Input
+                        </div>
+                        <div style="text-align: center; align-self: center; padding-left: 6%; margin-top: -20px; font-size: 1.5em;">
+                            &rarr;
+                        </div>
+                        <div class="flex-child imgInOut" style="align-items: center; justify-content: center;">
+                            <button type="button" class="textBtn" style="margin: 5px;">?
+                                <span class="hidden-info top">When you input an image into a model designed for image processing, the model encodes the data from the pixels of the
+                                image into a latent vector. This process involves transforming the raw pixel data into a smaller, more manageable form
+                                that retains the essential information about the image.</span>
+                            </button>
+                            <img src="./images/Tablevector.png" alt="Latent Vector" style="width: 30% !important; height: auto;">
+                            Latent vector
+                        </div>
+                        <div class="graphLayer hid flex-child">
+                        <div id="hidLayer">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        Hidden layer</div>
+                        <div class="graphLayer flex-child chosen" id="lay4">
+                            <button type="button" class="textBtn" style="position: absolute; top: -6%; left: 34%; z-index: 1;" >? 
+                                <span class="hidden-info test">This is one of the hidden layers of the neural network that you can interact with. Each dot in the visualization
+                                represents a different feature captured by the network, which you can also see in the bar graph below. The 'tree'
+                                feature is highlighted in red, indicating that you can adjust its activation using the slider.</span>
+                            </button>
+                        <div class="layerHighlight active" id="layer4"></div>
+                        Layer 4
+                        </div>
+                        <div class="graphLayer hid flex-child">
+                            <div id="hidLayer">
+                                <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            </div>
+                            Hidden layer</div>
+                        <div class="graphLayer flex-child" id="lay7">
+                            <div class="layerHighlight" id="layer7"></div>
+                            Layer 7
+                        </div>
+                        <div class="graphLayer hid flex-child">
+                            <button type="button" class="textBtn" style="position: absolute; top: 2%; left: 63.5%;">?
+                                <span class="hidden-info test"> All layers inbetween the input- and output-layer are ‘hidden layers’. As data flows through the hidden layers, the
+                                network learns to recognize features. Each hidden layer can extract different types of features from the input,
+                                gradually building a more detailed understanding of the data, required for the final output. </span>
+                            </button>
+                            <div id="hidLayer">
+                                <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            </div>
+                            Hidden layer</div>
+                        <div class="graphLayer flex-child" id="lay10">
+                            <div class="layerHighlight" id="layer10"></div>
+                            Layer 10
+                        </div>
+                        <div class="graphLayer hid flex-child">
+                            <div id="hidLayer">
+                                <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            </div>
+                            Hidden layer</div>
+                        <div style="text-align: center; align-self: center; padding-right: 15px; margin-top: -20px; font-size: 1.5em;">
+                            &rarr;
+                        </div>
+                        <div class="flex-child imgInOut">
+                            <button type="button" class="textBtn" style="position: absolute; top: 20%; right: 0%;">?
+                                <span class="hidden-info test">The data from the last hidden layer can be decoded back into an image. This process essentially translates the
+                                simplified data back into a complex image with pixels.</span>
+                            </button>
+                            <img class="imgInOut" src="./images/imagechanged.png" alt="Output">
+                        Output
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center" style="text-align: center; width: 100%; margin-bottom: 3%;">
+                    Click a layer to see how the data and interactive slider changes
+                </div>
+                <div style="position: relative; margin-bottom: 10%;">
+                    <button type="button" class="textBtn" style="margin-left: 5%;">?
+                        <span class="hidden-info left">For each layer, the identified features are shown in this graph, along with the number of neurons responsible for that
+                        feature. Some features have additional ‘parts’ identified; tree-t would be the top part of a tree, while tree-b would be
+                        the bottom.</span>
+                    </button> 
+                    <div class="center" style="white-space: nowrap;">
+                    <div style="display: inline-block;vertical-align: top; height: 260px; text-wrap: wrap;">
+                        <div id="painting" style="display: inline-block;vertical-align: top;"></div>
+                        <div class="slidecontainer">
+                            -
+                            <input type="range" min="-10" max="5" value="0" class="slider" id="myRange">
+                            +
+                            <br>
+                            <div style="font-size: 12px;">
+                            By moving the slider back and forth, you’ll be able to change the activation of the neurons responsible for the feature
+                            ‘tree’ on the different layers - and see how these changes affect the image differently depending on the layer.
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="bGraph active" id="img4" style="top: 30%;">
+                    <img class="imgGraph" src="http://localhost:5001/data/churchoutdoor/layer4/bargraph.svg?0.7929213483871154" style="width: 90%;">
+                </div>
+                <div class="bGraph" id="img7" style="top: 25%;">
+                    <img class="imgGraph" src="http://localhost:5001/data/churchoutdoor/layer7/bargraph.svg?0.892944603677607">
+                </div>
+                <div class="bGraph" id="img10" style="top: 5%;">
+                    <img class="imgGraph" src="http://localhost:5001/data/churchoutdoor/layer10/bargraph.svg?0.24836263601886843" style="width: 120%;">
+                </div>
+
+                    </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="floating_content">
+                    Here are some of the questiones you might have while navigating our application. If you want to know more about a topic presented, just click the collapsible for more information!
+                    <br><br>
+                    <button type="button" class="collapsible"> The exciting world of Machine Learning</button>
+                    <div class="content">
+                        <p>
+
+                            Machine Learning is like giving computers the ability to learn from data and make decisions without being explicitly programmed. It's all about teaching computers to spot patterns and make predictions based on examples. <br>
+                            <br>
+                            Think of it like this: Imagine you're training a puppy. You show it different toys and tell it which ones are balls and which ones are bones. Eventually, the puppy learns to recognize balls and bones on its own, even if they're different colors or sizes. That's kind of what we do with machines, but instead of toys, we use data.</p>
+                    
+                    </div>
+                    <button type="button" class="collapsible"> Neural Networks</button>
+                    <div class="content">
+                        <p>When you talk to your friends about Machine Learning, one of the first things that might come to mind would be ChatGPT -
+                            programs that seem to understand what you're saying and respond with witty comments or helpful information. Many
+                            available Generative AIs (GenAI) - such as ChatGPT - take some input from the human user, and responds with a generated
+                            output.
+                            
+                            <p style="text-align: center;">
+                            <img src="./images/InputProcessOutput.png" alt="Input-process-output" style="max-width: 60%; height: auto; ">
+                            </p>
+                            
+                                But have you ever stopped to wonder how GenAIs actually work?
+                                <br> <br>
+                                Well, that's where neural networks come in!
+                                <br> <br>
+                                Neural networks are like the brains behind GenAIs. They're made up of layers of interconnected neurons, similar to the
+                                neurons in our brains. Each layer processes information and passes it on to the next layer, sort of like a relay race
+                                where each runner hands off the baton to the next.
+                                <br> <br>
+                                This process is all hidden from the user, hence why all the layers between the input- and output-layers are called
+                                ‘hidden layers’.
+                            
+                            <p style="text-align: center;">
+                            <img src="./images/HiddenLayers.png" alt="Layers with input and output" style="max-width: 80%; height: auto; margin:-60px;">
+                            </p>
+                            
+                                But what if instead of text, you would like to work with images?
+                                <br> <br>
+                                We train Neural Networks by showing them lots of pictures and telling them what's in each one. But instead of copying,
+                                they learn from the examples, looking for patterns and similarities between the new image and the ones it's seen before.
+                                <br> <br>
+                                When a neural network is presented an image, whether it's a photo of a cat or a picturesque church, that image undergoes
+                                a journey through the network, traversing layer by layer. At each hidden layer, the network analyzes different features
+                                of the image, such as colors, shapes, and textures. These layers work together like a team of artists, each contributing
+                                its expertise to capture the essence of the input image. This knowledge can then be used to create something new and
+                                unique.
+                            
+                        </p>
+                    </div>
+                    
+                    <button type="button" class="collapsible">GANs</button>
+                    <div class="content">
+                        <p>
+
+                            Let's talk about something really cool: Generative Adversarial Networks, or GANs for short. 
+                            <br><br>
+                            GANs are like artistic duos. Imagine one artist, the <b>generator</b>, creating counterfeit artwork, and another artist, the <b>discriminator</b>, trying to spot the fakes. But here's the twist: as the generator gets better at making fakes, the discriminator gets better at spotting them. It's like a never-ending game of cat and mouse.
+                            <br><br>
+                            With GANs, we can generate new unique images that look just like the real thing. Imagine having a superpower that lets you paint with neural networks, anyone can do it; That's exactly what GANPaint does. With our innovative interface, you can interact directly with the hidden layers of neural networks, the magic behind GANs.
+                            <br><br>
+                            But how do GANs learn to produce such remarkable images? It all begins with layers and training.
+                        </p>
+                    </div>
+
+                    <button type="button" class="collapsible">Hidden layers: blocks of creativity</button>
+                    <div class="content">
+                        <p>
+
+                In the realm of GANs, layers are the building blocks of creativity. These layers represent the neural networks' depth and complexity, each one specializing on different aspects of image generation.
+                <br><br>
+                In the first layers, the neural network learns basic features like edges and simple shapes. It's like teaching a child to recognize the outlines of objects. As the image progresses through the middle layers, the network starts combining these basic features to identify more complex patterns and structures, such as architectural details, trees, or clouds in the sky. Think of it as the child learning to recognize different parts of a church or the intricate details of outdoor scenery. <br><br>
+                Finally, the network puts all these pieces together to generate the final output. So, the child is completing a puzzle, where each piece represents a different aspect of the image, coming together to form the complete picture.*
+                        </p>
+                    </div>
+
+                    <button type="button" class="collapsible">Training: The Creative Journey</button>
+                    <div class="content">
+                        <p>
+
+                        During the training process, the generator learns to transform the input into coherent visual representations. On the other hand, the discriminator undergoes its own training regimen. Tasked with distinguishing between genuine and synthetic images, it examines the creations generated by the generator, providing valuable feedback to guide its improvement.
+                        <br><br>
+                        Together, through countless iterations of training, the generator and discriminator engage in a captivating dance of creation and critique. With each round, the generator improves its skills, producing images that are increasingly indistinguishable from reality, while the discriminator sharpens its judgment, becoming ever more adept at detecting subtle nuances that look artificiality.
+                        <br><br>
+                        In the realm of GANPaint, this intricate interplay between layers and training forms the backbone of our innovative interface. By delving into the hidden layers of neural networks, you're not just interacting with pixels – you are starting your journey of understanding the inner workings of GenAIs.
+                        </p>
+                    </div>
+
+                    <button type="button" class="collapsible">How does GanPaint work?</button>
+                    <div class="content">
+                        <p>
+                    When you start to use GanPaint, you might notice that certain objects, like doors, can only be added in specific places, such as on the sides of buildings. But why is that?
+                    <br><br>
+                    Well, it all comes down to how the AI learns and understands the world. When training the AI, it's exposed to a vast amount of data, including images of buildings, landscapes, and various objects in their natural contexts. Through this exposure, the AI learns to associate certain objects with specific environments.
+                    <br><br>
+                    So, when you try to draw a door in the sky, the AI recognizes that it's not a typical location for a door based on its training data. It's like trying to fit a piece of puzzle in the wrong hole – it just doesn't match the patterns the AI has learned.
+                    <br><br>
+                    However, when you add a door to the side of a building, the AI knows that this is a common location for doors in its training data. It seamlessly integrates the door into the scene, using its learned knowledge to create a realistic and contextually appropriate addition.
+                    <br><br>
+                    In essence, the limitations on where certain objects can be added reflect the AI's understanding of the world based on its training data. It's a fascinating glimpse into the inner workings of machine learning and the complex relationship between data, context, and creativity.
+                     </p>
+                    </div>
+
+                    <button type="button" class="collapsible">The visualised hidden layers</button>
+                    <div class="content">
+                        <p>
+                            For this project, we have selected three hidden layers for your exploration: layers 4, 7, and 10. Each layer offers a distinct perspective on image generation, reflecting the progressive complexity of the neural network.
+                            <br><br>
+                            In the earlier layers, such as layer 4, the network begins to discern basic shapes and features, laying the foundation for understanding the visual content. These layers typically identify simpler concepts, like edges and basic shapes.
+                            <br><br>
+
+                            Moving towards the middle layers, like layer 7, the network's comprehension deepens, recognizing more intricate patterns and structures within the images. Here, concepts become more nuanced, encompassing a broader range of visual elements, from objects to parts and materials.
+                            <br><br>
+                            Finally, in the later layers, like layer 10, the network focuses on finer details such as colors, textures, and patterns. While earlier layers may identify a 'tree' as a basic object, layer 10 captures the essence of a tree through its unique color palette and texture, offering a more abstract representation.
+                            <br><br>
+                            So, when drawing with concepts like 'tree' across these layers, you'll notice significant variations in the output. In layer 4, it may depict a basic outline, while in layer 10, it could manifest as a rich blend of colors and textures resembling foliage.
+                        </p>
+                    </div>
+                    
+                    <button type="button" class="collapsible">The research behind GanPaint</button>
+                    <div class="content">
+                        <p>
+
+                But how do they do it? How does GanPaint know exactly what to create? Well, that's where the genius of GAN Dissection comes into play!
+                <br><br>
+                Researchers at IBM and MIT used a technique called GAN Dissection to dig deep into the inner workings of our GAN model. They wanted to understand why the AI behaves the way it does and how it's able to create such realistic and contextually appropriate objects.
+                <br><br>
+                Imagine you have a magic magnifying glass that lets you zoom into the AI's brain, layer by layer. As you zoom in, you'll see different parts of the network light up, each responsible for recognizing specific features in the scene.
+                <br><br>
+                For example, one part might specialize in identifying buildings, while another focuses on doors. As the AI processes the scene, these specialized parts work together to compose the final image, seamlessly integrating objects like doors into the surroundings.
+                <br><br>
+                But here's the coolest part: GAN Dissection allows researchers to dissect these individual parts of the network and understand exactly how they contribute to the final output. They can see which neurons light up when a door is added, how they interact with other parts of the network, and even tweak them to create new and exciting effects.
+                <br><br>
+                So, the next time you use GanPaint demo and marvel at the realistic doors and other objects you can add to your scenes, remember that it's all thanks to the power of GAN Dissection and the incredible insights it provides into the inner workings of our AI model.
+                                        </p>
+                    </div>
+                    <br>
+
+                </div>
+                
+                
+                
+            </div>
+
+            <div class="pagefooter">
+                <div class="floating_content">
+                
+                    <div style="text-align: center;">
+                
+                        <br>
+
+                        <div style="display: inline-block;">
+                            A project by Anne-Marie Rommerdahl (annro@itu.dk), Daria Damian (dard@itu.dk), Ida Barkou Vilstrup (ivil@itu.dk) from <a href="https://en.itu.dk/">IT University of Copenhagen</a> based on the project of the <br><a href="https://mitibmwatsonailab.mit.edu" target="_blank"><b>MIT-IBM</b> Watson AI
+                                Lab</a> <br>
+                        </div>
+                
+                    </div>
+                
+                </div>
+            
+            </div>
+
+        </div>
+
+<script src="vendor.js"></script>
+<script src="newfrontpage.js"></script>
+<!-- Move below to javascript file -->
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+        content.style.maxHeight = null;
+        } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        } 
+    });
+    }
+</script>
+</body>
+</html>

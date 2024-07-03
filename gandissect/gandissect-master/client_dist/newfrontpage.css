@@ -1,0 +1,543 @@
+@font-face {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 300;
+    src: local("Source Sans Pro Light"), local("SourceSansPro-Light"), url(ee2a11b8055d665afd2ac1d818683ffe.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 400;
+    src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"), url(5182da425f811908bed9f5b8c72fa44f.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    src: local("Source Sans Pro SemiBold"), local("SourceSansPro-SemiBold"), url(774c05ccae92d11b95a2ef722c9566a8.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"), url(0d9b62a03206f739cd34b2936a5929f1.ttf) format("truetype")
+}
+
+body {
+    background-color: rgb(244, 244, 244);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    font-size: 2rem;
+}
+
+a {
+    color: #0275d8;
+    text-decoration: none
+}
+
+
+button {
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0
+}
+
+button.textBtn {
+    color: white;
+    background-color: #999;;
+      vertical-align: top;
+      height: 22px;
+      width: 22px;
+      text-align: center;
+      line-height: 1;
+      font-weight: bold;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+}
+
+button.textBtn:hover {
+    overflow: visible;
+    background-color: #414141;
+    cursor: pointer;
+}
+
+button.textBtn .hidden-info {
+    position: absolute;
+      top: 23px;
+      width: 220px;
+      text-align: left;
+      background: #a83738;
+      padding: 15px;
+      transition: opacity .25s ease-in-out;
+      color:#fff;
+}
+
+button.textBtn .hidden-info.right {
+    left: 0;
+}
+
+button.textBtn .hidden-info.left {
+    right: 0;
+}
+
+button.textBtn .hidden-info.top {
+    top: -30px;
+    right: 25px;
+}
+
+button.textBtn .hidden-info.test {
+        top: auto;
+        left: -440%;
+        bottom: 125%;
+    }
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #a83738;
+    color: #f5f5f5
+}
+
+.navbarContent {
+    margin: 10px 20px
+}
+
+.layerBtn {
+    float: right;
+    font: Arial;
+    font-size: 15px;
+    background-color: #a83738;
+    color: rgba(255, 255, 255, .75);
+    cursor: pointer;
+}
+
+.layerBtn:hover {
+    color: #ffffff;
+}
+
+.navbarContent span {
+    padding-left: 10px
+}
+
+.navbarContent button {
+    margin-left: 10px
+}
+
+.navbarTitle {
+    font-size: 12pt;
+    font-weight: 700
+}
+
+.main_frame {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: #292b2c;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: visible;
+}
+
+.pagefooter{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;    
+    height: 8em;
+    background-color: #a83738;
+    color: #f5f5f5
+}
+
+.pagefooter a{
+        color: #8dbFFF;
+        text-decoration: none
+}
+
+.floating_content {
+    padding: 10px
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-child {
+    margin: 1.5%;
+}  
+
+#io {
+    height: 50px;
+    width: 50px;
+    background-color: #e6b3e4;
+    border-radius: 50%;
+    margin-top: 10%;
+    font-size: 13px;
+    line-height: 50px;
+    text-align: center;
+}
+
+#hidLayer {
+    height: 140px;
+    background-color: #d1cccc;
+    border-radius: 15px;
+    padding-top: 10px;
+}
+
+.dot {
+    position: relative;
+    background-color: #928f8f;
+    border-radius: 15px;
+    width: 45%;
+    height: 12%;
+    margin-left: 25%;
+    margin-top: 45%;
+}
+
+.dotobject {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #4B4CBF;
+    color: white;
+    position: relative;
+}
+
+/*Tooltip styling based on https: //www.w3schools.com/css/css_tooltip.asp*/
+
+.dotobject .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #4B4CBF;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 37.5%;
+    margin-left: -37.5px;
+    margin-bottom: 5px;
+}
+
+.dotobject .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #4B4CBF transparent transparent transparent;
+}
+
+.dotobject:hover .tooltiptext{
+    visibility: visible;
+}
+
+.dotmaterial {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #F0883B;
+    color: white;
+    position: relative;
+}
+
+.dotmaterial .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #F0883B;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-weight: bold;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 37.5%;
+    margin-left: -37.5px;
+    margin-bottom: 5px;
+}
+
+.dotmaterial .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #F0883B transparent transparent transparent;
+}
+
+.dotmaterial:hover .tooltiptext {
+    visibility: visible;
+}
+
+.dotpart {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #50BDAC;
+    color: white;
+    position: relative; 
+}
+
+.dotpart .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #50BDAC;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-weight: bold;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 37.5%;
+    margin-left: -37.5px;
+    margin-bottom: 5px;
+}
+
+.dotpart .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #50BDAC transparent transparent transparent;
+}
+
+.dotpart:hover .tooltiptext {
+    visibility: visible;
+}
+
+.dotobjectTree {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #4B4CBF;
+    border: 1.5px solid red;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+}
+
+/*Tooltip styling based on https: //www.w3schools.com/css/css_tooltip.asp*/
+
+.dotobjectTree .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #4B4CBF;
+    border: 1.5px solid red;
+    border-radius: 50%;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 37.5%;
+    margin-left: -37.5px;
+    margin-bottom: 5px;
+}
+
+.dotobjectTree .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+}
+
+.dotobjectTree:hover .tooltiptext {
+    visibility: visible;
+}
+
+.bGraph {
+    display: none;
+    position: absolute;
+    /*top: 50px;*/
+    left: -55px;
+}
+
+.active {
+    display: block;
+}
+
+.chosen {
+    font-weight: bold;
+}
+.imgInOut {
+    margin: auto;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.imgInOut img{ 
+    width: 150%;
+    height: auto;
+    margin: auto;
+}
+
+.imgGraph {
+    height: auto;
+    rotate: 90deg;
+}
+
+.graphLayer {
+    font-size: 14px;
+    text-wrap: wrap;
+}
+
+.graphLayer.hid {
+    width: 45px;
+    font-size: 12px;
+    text-wrap: wrap;
+    text-align: center;
+    margin-top: 4%;
+}
+
+.layerHighlight {
+    cursor: pointer;
+    height: 180px;
+    width: 55px;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 5px;
+    background-color: #d1cccc;
+}
+
+.layerHighlight.active {
+    background-color: #b8b3b3;
+}
+
+
+.collapsible {
+    background-color: #a83738;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+.collapsible:hover {
+    background-color: #8B0000;
+  }
+  
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.center {
+    margin: auto;
+    width: 33%;
+}
+
+@media (min-width:768px) {
+    .container {
+        width: 750px
+    }
+}
+
+@media (max-width:500px) {
+    .container {
+        padding: 0;
+        margin: 0
+    }
+
+    .floating_content {
+        padding: 5px 2px
+    }
+
+    .GanPaintView {
+        border: none
+    }
+
+    .no_small {
+        display: none
+    }
+}

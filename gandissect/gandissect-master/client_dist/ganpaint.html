@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAN Paint</title>
+
+    <link rel="stylesheet" type="text/css" href="ganpaint.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-129271073-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {dataLayer.push(arguments);}
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129271073-2');
+    </script>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <!--<meta name="twitter:site" content="@nytimes">-->
+    <!--<meta name="twitter:creator" content="@SarahMaslinNir">-->
+    <meta name="twitter:title" content="Painting with GANs from MIT-IBM Watson AI Lab">
+    <meta name="twitter:description"
+          content="This demo let's you modify a selection of meaningful GAN units for a
+            generated image by simply painting.">
+    <meta name="twitter:image"
+          content="http://gandissect.res.ibm.com/overview.png">
+
+
+    <!--<link rel="stylesheet" type="text/css" href="vendor.css">-->
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbarContent">
+        <button class="frontpageBtn" onclick="frontpageRedirect()">Go to frontpage</button>
+        <script>
+            function frontpageRedirect() {
+                //maybe make it not dependent on the specific localhost-link
+                window.location.href = "http://localhost:5001/client/newfrontpage.html";
+            } 
+        </script>
+        
+        <div class="center">
+            <span class="navbarTitle"> XGanArt</span>
+            <span class="currLayer"> </span>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="main_frame">
+
+    <div class="container">
+
+        <!--<div class="floating_content">-->
+        <!--This demo let's you draw a selection of GAN units on a generated-->
+        <!--image. Each selection of units expresses a visual feature, like-->
+        <!--"tree" or "sky".-->
+        <!--Details on the methods used: <a-->
+        <!--href="https://gandissect.csail.mit.edu/" target="_blank">Visualizing-->
+        <!--and Understanding GANs</a>.-->
+
+
+        <!--</div>-->
+
+        <div class="floating_content" style="font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5;">
+            #GANPaint draws with object-level control using a deep network.
+Each brush activates a set of neurons in a GAN that has learned to draw scenes.
+            More information at <a href="https://gandissect.csail.mit.edu/" target="_blank"> gandissect.csail.mit.edu</a>.
+            <!--This demo let's you modify a selection of meaningful GAN units for a-->
+            <!--generated image by simply painting. Find more details in <a-->
+                <!--href="https://gandissect.csail.mit.edu/" target="_blank">Visualizing-->
+            <!--and Understanding GANs</a>.-->
+
+
+        </div>
+
+        <!--*Removing the project and layer-selector*-->
+        <div class="floating_content expert" style="display: none;">
+            <!-- <span>project:</span> -->
+            <select class="custom-select" id="project_selector" style="display: none;">
+                <option selected>Select Project</option>
+
+            </select>
+            <select class="custom-select" id="layer_selector" style="display: none;">
+
+            </select>
+
+        </div> 
+        
+
+        <div class="floating_content">
+
+            <div style="text-align: center;">
+                <div style="white-space: nowrap;">
+                    <div class="intro_text no_small" style="font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5;">Select a feature brush &
+                        strength
+                        and enjoy
+                        painting:
+                    </div>
+                    <div style="display: inline-block;vertical-align: top; height: 260px; ">
+                        <div style="height: 200px;overflow-y: auto;">
+                            <div id="shortcuts">
+
+                            </div>
+                        </div>
+
+                        <div class="btn_group expert"
+                             style="white-space: nowrap;font-size: 0;margin-top: 5px;display: none;">
+                            <div class="btn_intensity divbtn btn_left">
+                                low
+                            </div>
+                            <div class="btn_intensity divbtn btn">
+                                med
+                            </div>
+                            <div class="btn_intensity divbtn btn_right selected">
+                                high
+                            </div>
+                        </div>
+                        <div class="btn_group"
+                             style="white-space: nowrap;font-size: 0;margin-top: 5px;">
+                            <div class="btn_action divbtn btn_left selected">
+                                draw
+                            </div>
+                            <div class="btn_action divbtn btn_right">
+                                remove
+                            </div>
+                        </div>
+                        <div class="btn_group demo" style="margin-top: 3px;">
+                            <div class="undo_btn divbtn btn simple"> undo</div>
+                            <div class="reset_btn divbtn btn simple"> reset
+                            </div>
+                        </div>
+
+                        <!--<select id="select_intensity"-->
+                        <!--style="margin-top: 5px; ">-->
+                        <!--<option value=2>light</option>-->
+                        <!--<option value=5>medium</option>-->
+                        <!--<option value=15>heavy</option>-->
+
+                        <!--</select>-->
+                    </div>
+
+                    <div id="painting"
+                         style="display: inline-block;vertical-align: top;">
+
+                    </div>
+
+
+                    <div style="height: 260px; display: inline-block;vertical-align: top;">
+                        <!--*Changed width from 250px to 150px. Looks better* -->
+                        <div class="expert" style="display: none;width: 150px;">
+                            <div class="undo_btn divbtn btn simple"> undo</div>
+                            <div class="reset_btn divbtn btn simple"> reset
+                            </div>
+
+                            <div class="historyWrap expert"
+                                 style="display: none;">
+                                <div id="history"
+                                     style="display: inline-block;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="floating_content">
+
+            <div style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5;" class="no_small">
+                Feeling adventurous? Choose a different picture :
+            </div>
+
+            <div style="overflow-y: hidden; overflow-x: scroll; height: 60px;">
+                <div class="image_list" style="white-space: nowrap;">
+
+                </div>
+            </div>
+        </div>
+        <div class="floating_content">
+
+            <!--<p>(3) Share your creation on twitter or facebook.-->
+            <!--</p>-->
+
+            <div style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5;">
+
+
+                <!--<div style="display: table; width: 100%; text-align: right;">-->
+                <!--<div style="display: table-cell; padding: 3px;">-->
+                <!--</div>-->
+
+                <!--<div style="display: table-cell; text-align: left;padding: 3px;">-->
+                <div style="display: inline-block;">
+                    <a id="tweet_it"
+                       href="https://twitter.com/intent/tweet?text=I%20painted%20with%20a%20GAN%20on%20GANpaint%20(http://bit.ly/ganpaint).&hashtags=MITIBM,GANpaint,GANdissect">Tweet</a>
+                    or <a href="" download="MyGanPaint.png" id="img_download">download</a>
+                    <br> your own creation.
+
+                </div>
+                <!--</div>-->
+                <!--</div>-->
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script src="vendor.js"></script>
+<script src="ganpaint.js"></script>
+
+</body>
+</html>
