@@ -2,6 +2,8 @@
 
 Welcome to the XGANArt project repository! This project is a part of a Bachelor’s thesis at the IT University of Copenhagen, aiming to enhance the transparency and explainability of Generative Adversarial Networks (GANs) through the development of the XGANArt interface. The project builds upon the foundational work of the GANPaint project by Bau et al., 2018.
 
+For detailed information about the project, refer to the [thesis report](XGANArt.pdf)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
