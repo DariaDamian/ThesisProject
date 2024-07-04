@@ -105,10 +105,11 @@ This project is based on the GANDissect project and the GANPaint interface. We e
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
-
 Source code from:
 https://github.com/CSAILVision/gandissect
+
+---
+## More about how to run the project
 
 To run this project, a CUDA-enabled GPU as well as some disk space is required. 
 
